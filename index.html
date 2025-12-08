@@ -1,1 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodelessAI - AI & Blockchain Integration Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-grotesk {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* CSS Variables for Theme Colors */
+        :root {
+            --bg-primary: rgb(249, 250, 251);
+            --bg-secondary: rgb(243, 244, 246);
+            --text-primary: rgb(17, 24, 39);
+            --text-secondary: rgb(55, 65, 81);
+            --text-tertiary: rgb(107, 114, 128);
+            --border-color: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-strong-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --glass-strong-border: rgba(0, 0, 0, 0.15);
+            --glass-shadow: rgba(0, 0, 0, 0.05);
+            --tech-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --grid-pattern: rgba(150, 150, 150, 0.3);
+            --hover-overlay: rgba(255, 255, 255, 0.2);
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: rgb(17, 24, 39);
+            --bg-secondary: rgb(31, 41, 55);
+            --text-primary: rgb(255, 255, 255);
+            --text-secondary: rgb(229, 231, 235);
+            --text-tertiary: rgb(209, 213, 219);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-strong-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-strong-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
+            --tech-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --grid-pattern: rgba(255, 255, 255, 0.05);
+            --hover-overlay: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .glass-strong {
+            background: var(--glass-strong-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-strong-border);
+            box-shadow: 0 4px 6px var(--glass-shadow);
+        }
+        
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Gradient background with grid */
+        .tech-gradient {
+            background: var(--tech-gradient);
+        }
+        
+        /* Grid pattern */
+        .grid-pattern {
+            background-image: 
+                linear-gradient(var(--grid-pattern) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-pattern) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Glow effects */
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.4);
+        }
+        
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(118, 75, 162, 0.4);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
 
+        
+        /* Particle effect */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: particleFloat 20s infinite;
+        }
+        
+        @keyframes particleFloat {
+            0%, 100% { 
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { 
+                transform: translate(100px, -800px) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        /* Responsive Font Sizing */
+        @media (max-width: 640px) {
+            html { font-size: 14px; }
+            .text-5xl { font-size: 2.5rem !important; }
+            .text-6xl { font-size: 3rem !important; }
+            .text-7xl { font-size: 3.5rem !important; }
+            .text-4xl { font-size: 2rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-2xl { font-size: 1.25rem !important; }
+            .text-xl { font-size: 1.1rem !important; }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            html { font-size: 15px; }
+            .text-6xl { font-size: 3.5rem !important; }
+            .text-7xl { font-size: 4rem !important; }
+        }
+        
+        @media (min-width: 1025px) {
+            html { font-size: 16px; }
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .tech-item { width: 150px; margin: 0 15px; }
+            .service-card { margin-bottom: 1rem; }
+            .glass-strong, .glass { padding: 1rem !important; }
+            .container { padding-left: 1rem; padding-right: 1rem; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 5px;
+        }
+        
+        /* Hover effects */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Improved Infinite Scrolling Animation */
+        .scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 20px 0;
+        }
+        
+        .scroll-track {
+            display: flex;
+            animation: scroll 50s linear infinite;
+            width: max-content;
+        }
+        
+        /* Faster scrolling on mobile */
+        @media (max-width: 768px) {
+            .scroll-track {
+                animation: scroll 25s linear infinite;
+            }
+        }
+        
+        .scroll-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .tech-item {
+            flex-shrink: 0;
+            width: 200px;
+            margin: 0 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--glass-strong-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-color);
+            padding: 20px;
+            z-index: 40;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        /* Mobile Navbar Optimization */
+        @media (max-width: 768px) {
+            nav .container {
+                padding-top: 0.75rem !important;
+                padding-bottom: 0.75rem !important;
+            }
+            
+            nav .text-2xl {
+                font-size: 24px !important;
+                line-height: 1 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+            
+            .mobile-menu {
+                top: 56px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            nav .container {
+                padding-top: 0.5rem !important;
+                padding-bottom: 0.5rem !important;
+            }
+            
+            nav .text-2xl {
+                font-size: 24px !important;
+                line-height: 1 !important;
+                display: flex !important;
+                align-items: center !important;
+            }
+            
+            .mobile-menu {
+                top: 50px;
+            }
+        }
+        
+        /* Pulse animation for AI elements */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Blockchain node animation */
+        .blockchain-node {
+            position: relative;
+        }
+        
+        .blockchain-node::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            animation: node-pulse 3s infinite;
+        }
+        
+        @keyframes node-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Timeline for integration process */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 25px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        /* Technology grid */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Technology category badges */
+        .tech-category {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 640px) {
+            .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+            .py-12 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .px-6 { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .px-8 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+            .gap-8 { gap: 1rem !important; }
+            .gap-6 { gap: 0.75rem !important; }
+            .space-y-8 > * + * { margin-top: 1.5rem !important; }
+            .mb-16 { margin-bottom: 2rem !important; }
+            .mb-12 { margin-bottom: 1.5rem !important; }
+        }
+        
+        /* Tablet Responsiveness */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .py-24 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+            .gap-8 { gap: 1.5rem !important; }
+        }
+        
+        /* Select Dropdown Styling */
+        select {
+            color: var(--text-primary);
+            background-color: var(--glass-strong-bg);
+        }
+        
+        select option {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 10px;
+        }
+        
+        /* Theme-aware text colors */
+        .text-theme-primary {
+            color: var(--text-primary);
+        }
+        
+        .text-theme-secondary {
+            color: var(--text-secondary);
+        }
+        
+        .text-theme-tertiary {
+            color: var(--text-tertiary);
+        }
+        
+        .hover\:text-theme-primary:hover {
+            color: var(--text-primary);
+        }
+        
+        .border-theme {
+            border-color: var(--border-color);
+        }
+        
+        .bg-theme-primary {
+            background-color: var(--bg-primary);
+        }
+        
+        .bg-theme-secondary {
+            background-color: var(--bg-secondary);
+        }
+    </style>
+</head>
+<body style="background-color: var(--bg-primary); color: var(--text-primary);" class="overflow-x-hidden">
+    
+    <!-- Animated Background -->
+    <div class="fixed inset-0 tech-gradient grid-pattern opacity-90 -z-10"></div>
+    
+    <!-- Particles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-5">
+        <div class="particle" style="left: 10%; width: 4px; height: 4px; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; width: 6px; height: 6px; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; width: 3px; height: 3px; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; width: 5px; height: 5px; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 50%; width: 4px; height: 4px; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 60%; width: 6px; height: 6px; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; width: 3px; height: 3px; animation-delay: 2.5s;"></div>
+        <div class="particle" style="left: 80%; width: 5px; height: 5px; animation-delay: 4.5s;"></div>
+        <div class="particle" style="left: 90%; width: 4px; height: 4px; animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glass-strong">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold font-grotesk">Codeless<span class="text-gradient">AI</span></span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-theme-secondary hover:text-theme-primary transition">Home</a>
+                    <a href="#services" class="text-theme-secondary hover:text-theme-primary transition">Services</a>
+                    <a href="#technologies" class="text-theme-secondary hover:text-theme-primary transition">Technologies</a>
+                    <a href="#projects" class="text-theme-secondary hover:text-theme-primary transition">Projects</a>
+                    <a href="#contact" class="text-theme-secondary hover:text-theme-primary transition">Contact</a>
+                </div>
+
+                <!-- Theme Toggle & CTA -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="theme-toggle" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition text-theme-secondary">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition text-white">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition text-theme-secondary">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-theme-primary">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <nav class="flex flex-col space-y-4">
+                <a href="#home" class="text-theme-secondary hover:text-theme-primary transition py-2">Home</a>
+                <a href="#services" class="text-theme-secondary hover:text-theme-primary transition py-2">Services</a>
+                <a href="#technologies" class="text-theme-secondary hover:text-theme-primary transition py-2">Technologies</a>
+                <a href="#projects" class="text-theme-secondary hover:text-theme-primary transition py-2">Projects</a>
+                <a href="#contact" class="text-theme-secondary hover:text-theme-primary transition py-2">Contact</a>
+                <a href="#contact" class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition w-full mt-4 text-center block text-white">
+                    Get Started
+                </a>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8">
+                    <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold">
+                        <span class="text-gradient">🚀 AI + Blockchain Integration Experts</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold font-grotesk leading-tight">
+                        Where
+                        <span class="text-gradient block">AI Intelligence</span>
+                        Meets Blockchain Trust
+                    </h1>
+                    
+                    <p class="text-xl text-theme-secondary leading-relaxed">
+                        We specialize in integrating Artificial Intelligence with Blockchain technology to create secure, 
+                        transparent, and intelligent systems. From predictive DeFi platforms to AI-driven smart contracts, 
+                        we're building the future of decentralized intelligence.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition glow-purple text-center text-white">
+                            Explore Integration Solutions
+                        </button>
+                        <a href="#ai-blockchain" class="glass-strong px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition inline-block text-center">
+                            Learn About AI+Blockchain
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient">200+</div>
+                            <div class="text-theme-tertiary text-sm mt-1">Integrated Projects</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient">85+</div>
+                            <div class="text-theme-tertiary text-sm mt-1">Blockchain Deployments</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-gradient">99.5%</div>
+                            <div class="text-theme-tertiary text-sm mt-1">System Uptime</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="relative float">
+                    <div class="glass-strong rounded-3xl p-8 glow-blue">
+                        <div class="space-y-6">
+                            <!-- AI + Blockchain Visualization -->
+                            <div class="glass rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-sm font-semibold text-theme-secondary">AI-Blockchain Synergy</span>
+                                    <div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-robot text-sm text-white"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full w-4/5"></div>
+                                            <div class="text-xs text-theme-tertiary mt-1">AI Model Accuracy</div>
+                                        </div>
+                                        <span class="text-xs text-green-600">94%</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                                            <i class="fas fa-link text-sm text-white"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="h-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full w-full"></div>
+                                            <div class="text-xs text-theme-tertiary mt-1">Blockchain Security</div>
+                                        </div>
+                                        <span class="text-xs text-green-600">100%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Integrated System Status -->
+                            <div class="glass rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-sm font-semibold text-theme-secondary">Integrated Systems</span>
+                                    <span class="text-xs text-green-600 flex items-center"><div class="w-2 h-2 bg-green-400 rounded-full mr-1"></div> Live</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="glass-strong rounded-lg p-3">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-brain text-blue-500 mr-2"></i>
+                                            <span class="text-xs text-theme-primary">AI Inference Engine</span>
+                                        </div>
+                                        <div class="text-xs text-theme-tertiary">Processing: 3.2M req/day</div>
+                                    </div>
+                                    <div class="glass-strong rounded-lg p-3">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-cube text-purple-500 mr-2"></i>
+                                            <span class="text-xs text-theme-primary">Smart Contracts</span>
+                                        </div>
+                                        <div class="text-xs text-theme-tertiary">Executed: 15.7K today</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Real-time Analytics -->
+                            <div class="glass rounded-2xl p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="text-sm font-semibold text-theme-secondary">Integration Performance</span>
+                                    <span class="text-xs text-green-600">Optimized</span>
+                                </div>
+                                <div class="flex items-end justify-between h-24 space-x-2">
+                                    <div class="bg-gradient-to-t from-blue-500 to-purple-600 w-full rounded-t" style="height: 60%" title="AI Processing"></div>
+                                    <div class="bg-gradient-to-t from-blue-500 to-purple-600 w-full rounded-t" style="height: 80%" title="Data Validation"></div>
+                                    <div class="bg-gradient-to-t from-blue-500 to-purple-600 w-full rounded-t" style="height: 45%" title="Block Confirmation"></div>
+                                    <div class="bg-gradient-to-t from-blue-500 to-purple-600 w-full rounded-t" style="height: 90%" title="Smart Contract Execution"></div>
+                                    <div class="bg-gradient-to-t from-blue-500 to-purple-600 w-full rounded-t" style="height: 70%" title="Model Training"></div>
+                                    <div class="bg-gradient-to-t from-purple-500 to-pink-600 w-full rounded-t" style="height: 100%" title="Integration Efficiency"></div>
+                                </div>
+                                <div class="text-xs text-theme-tertiary mt-2 text-center">AI + Blockchain Workflow Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI + Blockchain Integration Section -->
+    <section id="ai-blockchain" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Core Specialization</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    <span class="text-gradient">AI + Blockchain</span>
+                    Integration
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-4xl mx-auto">
+                    We bridge the gap between artificial intelligence and blockchain technology, creating systems 
+                    where AI enhances blockchain capabilities and blockchain provides trust and transparency to AI decisions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold font-grotesk">Why Integrate AI with Blockchain?</h3>
+                    <p class="text-theme-secondary">
+                        The convergence of AI and Blockchain creates a powerful synergy where AI algorithms become 
+                        more transparent and accountable through blockchain's immutable ledger, while blockchain 
+                        systems gain intelligence and adaptability through AI.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-1">Trustworthy AI</h4>
+                                <p class="text-theme-tertiary">Blockchain provides an immutable audit trail for AI decisions, ensuring transparency and accountability in automated systems.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-bolt text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-1">Intelligent Contracts</h4>
+                                <p class="text-theme-tertiary">AI-enhanced smart contracts that can adapt to complex conditions, learn from outcomes, and optimize execution.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-database text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold mb-1">Decentralized AI</h4>
+                                <p class="text-theme-tertiary">Distribute AI model training across blockchain networks while maintaining data privacy and model integrity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-strong rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Integration Architecture</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-brain text-white"></i>
+                                </div>
+                                <span class="text-sm font-semibold">AI Layer</span>
+                            </div>
+                            <i class="fas fa-exchange-alt text-theme-tertiary text-xl"></i>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-link text-white"></i>
+                                </div>
+                                <span class="text-sm font-semibold">Blockchain Layer</span>
+                            </div>
+                            <i class="fas fa-exchange-alt text-theme-tertiary text-xl"></i>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-cogs text-white"></i>
+                                </div>
+                                <span class="text-sm font-semibold">Integration Engine</span>
+                            </div>
+                        </div>
+                        
+                        <div class="glass rounded-xl p-6">
+                            <h4 class="font-semibold mb-3 text-theme-primary">Key Integration Points</h4>
+                            <ul class="space-y-2 text-sm text-theme-secondary">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    AI models executed via smart contracts
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Blockchain-verified training data
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Decentralized AI inference networks
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                    Tokenized AI model access
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Use Cases -->
+            <div class="mt-20">
+                <h3 class="text-3xl font-bold font-grotesk text-center mb-12">AI + Blockchain Use Cases</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-strong rounded-2xl p-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Predictive DeFi</h4>
+                        <p class="text-theme-tertiary mb-4">AI-powered prediction models integrated with DeFi protocols for automated trading, risk assessment, and yield optimization.</p>
+                        <div class="text-sm text-blue-400">ETH • ML Models • Smart Contracts</div>
+                    </div>
+                    
+                    <div class="glass-strong rounded-2xl p-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-file-contract text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Smart AI Contracts</h4>
+                        <p class="text-theme-tertiary mb-4">Self-learning smart contracts that adapt based on AI analysis of contract performance and external conditions.</p>
+                        <div class="text-sm text-purple-400">Solidity • Neural Networks • Oracles</div>
+                    </div>
+                    
+                    <div class="glass-strong rounded-2xl p-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-clinic-medical text-white"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3">Healthcare Data Exchange</h4>
+                        <p class="text-theme-tertiary mb-4">Secure, private healthcare data sharing with AI analysis on blockchain-encrypted data for medical research.</p>
+                        <div class="text-sm text-cyan-400">HIPAA • Federated Learning • IPFS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Enhanced -->
+    <section id="services" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Integration Services</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    Our <span class="text-gradient">Integration</span> Services
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-3xl mx-auto">
+                    End-to-end AI and blockchain integration solutions for enterprises and startups
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 glow-blue">
+                        <i class="fas fa-robot text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">AI-Blockchain Integration</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        Seamless integration of AI models with blockchain networks. We build systems where AI decisions are recorded on-chain and smart contracts trigger AI processes.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            On-chain AI inference verification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            AI-enhanced smart contracts
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Decentralized AI training networks
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Cross-chain AI model deployment
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Technologies: Ethereum, Hyperledger, TensorFlow, PyTorch</div>
+                    </div>
+                </div>
+
+                <!-- Service 2 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 glow-purple">
+                        <i class="fas fa-link text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">Enterprise Blockchain Solutions</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        Custom blockchain development with AI integration for supply chain, finance, healthcare, and identity management.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Private & consortium blockchains
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            AI-powered smart contract auditing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Tokenization strategy & implementation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Cross-platform interoperability
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Platforms: Ethereum, Polkadot, Hyperledger, Corda</div>
+                    </div>
+                </div>
+
+                <!-- Service 3 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">Advanced AI Systems</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        Development of sophisticated AI systems with blockchain-backed data provenance and model transparency.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Computer vision with on-chain verification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            NLP models with blockchain data integrity
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Predictive analytics with tamper-proof data
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Reinforcement learning for DeFi optimization
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Frameworks: TensorFlow, PyTorch, OpenAI, Hugging Face</div>
+                    </div>
+                </div>
+
+                <!-- Service 4 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">AI Oracles & Data Feeds</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        Secure AI-powered oracles that provide reliable off-chain data to smart contracts with verifiable computation.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            AI-validated external data feeds
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Decentralized oracle networks
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Cross-chain data compatibility
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Real-time data processing & delivery
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Technologies: Chainlink, Band Protocol, API3, Custom Oracles</div>
+                    </div>
+                </div>
+
+                <!-- Service 5 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">DeFi & FinTech Solutions</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        AI-enhanced decentralized finance platforms, automated market makers, and blockchain-based financial systems.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            AI-powered trading algorithms
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Risk assessment smart contracts
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Automated portfolio management
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Fraud detection with ML models
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Platforms: Ethereum, Binance Smart Chain, Solana, Avalanche</div>
+                    </div>
+                </div>
+
+                <!-- Service 6 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-8 service-card">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 font-grotesk">Integration Consulting</h3>
+                    <p class="text-theme-tertiary mb-6">
+                        Strategic consulting for AI and blockchain integration, including architecture design, implementation planning, and team training.
+                    </p>
+                    <ul class="space-y-2 text-sm text-theme-secondary">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Technology stack assessment
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Integration roadmap development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Security & compliance auditing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Team training & knowledge transfer
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-theme">
+                        <div class="text-xs text-theme-tertiary">Focus Areas: Architecture, Security, Scalability, Compliance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section - IMPROVED Full Width Scrolling -->
+    <section id="technologies" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Integrated Tech Stack</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    Technologies We <span class="text-gradient">Master</span>
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-3xl mx-auto">
+                    Our comprehensive technology stack for AI and blockchain integration
+                </p>
+            </div>
+
+            <!-- Full Width Infinite Scrolling Technologies -->
+            <div class="scroll-container">
+                <div class="scroll-track">
+                    <!-- Complete Set of Technologies (from your image) -->
+                    
+                    <!-- AI & Machine Learning Technologies -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-brain text-5xl text-blue-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">TensorFlow</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Machine Learning Framework</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-project-diagram text-5xl text-red-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">PyTorch</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Deep Learning Library</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-robot text-5xl text-purple-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">OpenAI GPT</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Natural Language Processing</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-eye text-5xl text-green-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Computer Vision</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Image & Video Analysis</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fab fa-python text-5xl text-blue-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Python</div>
+                        <div class="text-sm text-theme-tertiary mt-2">AI/ML Development</div>
+                    </div>
+                    
+                    <!-- Blockchain Platforms -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fab fa-ethereum text-5xl text-purple-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Ethereum</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Smart Contracts Platform</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fas fa-cube text-5xl text-indigo-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Solidity</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Smart Contract Language</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fas fa-project-diagram text-5xl text-cyan-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Hyperledger</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Enterprise Blockchain</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fas fa-circle-nodes text-5xl text-pink-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Polkadot</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Interoperability Platform</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fab fa-btc text-5xl text-yellow-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Binance Chain</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Smart Contract Platform</div>
+                    </div>
+                    
+                    <!-- Integration Frameworks -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);">Integration</div>
+                        <i class="fas fa-exchange-alt text-5xl text-green-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Web3.js</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Blockchain JavaScript API</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);">Integration</div>
+                        <i class="fas fa-server text-5xl text-orange-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">AI Model Serving</div>
+                        <div class="text-sm text-theme-tertiary mt-2">TensorFlow Serving</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);">Integration</div>
+                        <i class="fas fa-link text-5xl text-yellow-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Oracles</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Chainlink Integration</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #00d2ff, #3a7bd5);">Integration</div>
+                        <i class="fas fa-database text-5xl text-teal-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">IPFS</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Decentralized Storage</div>
+                    </div>
+                    
+                    <!-- Infrastructure & Tools -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #ff9966, #ff5e62);">Infrastructure</div>
+                        <i class="fab fa-docker text-5xl text-blue-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Docker</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Containerization</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #ff9966, #ff5e62);">Infrastructure</div>
+                        <i class="fab fa-aws text-5xl text-yellow-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">AWS</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Cloud Services</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #ff9966, #ff5e62);">Infrastructure</div>
+                        <i class="fab fa-react text-5xl text-cyan-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">React</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Frontend Framework</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #ff9966, #ff5e62);">Infrastructure</div>
+                        <i class="fab fa-node-js text-5xl text-green-600 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">Node.js</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Backend Runtime</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #ff9966, #ff5e62);">Infrastructure</div>
+                        <i class="fas fa-database text-5xl text-green-500 mb-3"></i>
+                        <div class="text-lg font-semibold text-theme-primary">MongoDB</div>
+                        <div class="text-sm text-theme-tertiary mt-2">NoSQL Database</div>
+                    </div>
+                    
+                    <!-- Duplicate Set for Seamless Infinite Scrolling -->
+                    <!-- AI & Machine Learning Technologies (Duplicate) -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-brain text-5xl text-blue-400 mb-3"></i>
+                        <div class="text-lg font-semibold">TensorFlow</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Machine Learning Framework</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-project-diagram text-5xl text-red-400 mb-3"></i>
+                        <div class="text-lg font-semibold">PyTorch</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Deep Learning Library</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-robot text-5xl text-purple-400 mb-3"></i>
+                        <div class="text-lg font-semibold">OpenAI GPT</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Natural Language Processing</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fas fa-eye text-5xl text-green-400 mb-3"></i>
+                        <div class="text-lg font-semibold">Computer Vision</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Image & Video Analysis</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category">AI/ML</div>
+                        <i class="fab fa-python text-5xl text-blue-500 mb-3"></i>
+                        <div class="text-lg font-semibold">Python</div>
+                        <div class="text-sm text-theme-tertiary mt-2">AI/ML Development</div>
+                    </div>
+                    
+                    <!-- Blockchain Platforms (Duplicate) -->
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fab fa-ethereum text-5xl text-purple-500 mb-3"></i>
+                        <div class="text-lg font-semibold">Ethereum</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Smart Contracts Platform</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fas fa-cube text-5xl text-indigo-400 mb-3"></i>
+                        <div class="text-lg font-semibold">Solidity</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Smart Contract Language</div>
+                    </div>
+                    
+                    <div class="tech-item glass-strong rounded-xl p-6 text-center relative">
+                        <div class="tech-category" style="background: linear-gradient(135deg, #8a2be2, #4169e1);">Blockchain</div>
+                        <i class="fas fa-project-diagram text-5xl text-cyan-400 mb-3"></i>
+                        <div class="text-lg font-semibold">Hyperledger</div>
+                        <div class="text-sm text-theme-tertiary mt-2">Enterprise Blockchain</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Categories Summary -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+                <div class="glass-strong rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-brain text-blue-400 mr-3"></i>
+                        AI & Machine Learning
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>TensorFlow</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>PyTorch</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>OpenAI GPT</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Computer Vision</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-blue-500 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-strong rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-cube text-purple-400 mr-3"></i>
+                        Blockchain Platforms
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Ethereum/Solidity</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Hyperledger Fabric</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Polkadot/Substrate</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Binance Smart Chain</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-purple-500 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-strong rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i class="fas fa-code text-green-400 mr-3"></i>
+                        Integration Frameworks
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Web3.js / Ethers.js</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 96%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>AI Model Serving</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>Oracles (Chainlink)</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 87%"></div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-theme-primary">
+                            <span>IPFS / Decentralized Storage</span>
+                            <div class="w-24 h-2 bg-theme-secondary rounded-full">
+                                <div class="h-full bg-green-500 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Process Section -->
+    <section id="process" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Our Methodology</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    Integration <span class="text-gradient">Process</span>
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-3xl mx-auto">
+                    Our structured approach to integrating AI and blockchain technologies ensures successful project delivery
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Process Step 1 -->
+                    <div class="timeline-item">
+                        <div class="glass-strong rounded-2xl p-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-xl font-bold">1</span>
+                                </div>
+                                <h3 class="text-2xl font-bold">Discovery & Analysis</h3>
+                            </div>
+                            <p class="text-theme-secondary mb-4">
+                                We begin by thoroughly understanding your business needs, technical requirements, 
+                                and integration goals. Our team analyzes data flows, AI model requirements, and 
+                                blockchain implementation possibilities.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="glass px-3 py-1 rounded-full text-xs">Requirement Gathering</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Feasibility Study</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Technology Assessment</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Architecture Planning</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Step 2 -->
+                    <div class="timeline-item">
+                        <div class="glass-strong rounded-2xl p-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-xl font-bold">2</span>
+                                </div>
+                                <h3 class="text-2xl font-bold">AI Model Development</h3>
+                            </div>
+                            <p class="text-theme-secondary mb-4">
+                                Our data scientists develop and train AI models tailored to your specific use case. 
+                                We focus on creating models that can be effectively integrated with blockchain systems 
+                                while maintaining performance and accuracy.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="glass px-3 py-1 rounded-full text-xs">Data Preparation</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Model Training</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Performance Optimization</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Testing & Validation</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Step 3 -->
+                    <div class="timeline-item">
+                        <div class="glass-strong rounded-2xl p-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-xl font-bold">3</span>
+                                </div>
+                                <h3 class="text-2xl font-bold">Blockchain Architecture</h3>
+                            </div>
+                            <p class="text-theme-secondary mb-4">
+                                We design and implement the blockchain infrastructure, including smart contracts, 
+                                consensus mechanisms, and network architecture. Our solutions ensure security, 
+                                scalability, and seamless AI integration.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="glass px-3 py-1 rounded-full text-xs">Smart Contract Development</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Network Configuration</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Security Protocols</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Node Deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Step 4 -->
+                    <div class="timeline-item">
+                        <div class="glass-strong rounded-2xl p-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-xl font-bold">4</span>
+                                </div>
+                                <h3 class="text-2xl font-bold">Integration & Testing</h3>
+                            </div>
+                            <p class="text-theme-secondary mb-4">
+                                We integrate AI models with blockchain systems, creating seamless data flows and 
+                                interaction protocols. Rigorous testing ensures system reliability, security, and 
+                                performance under various conditions.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="glass px-3 py-1 rounded-full text-xs">API Development</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Integration Testing</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Security Auditing</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Performance Optimization</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Step 5 -->
+                    <div class="timeline-item">
+                        <div class="glass-strong rounded-2xl p-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mr-4">
+                                    <span class="text-xl font-bold">5</span>
+                                </div>
+                                <h3 class="text-2xl font-bold">Deployment & Maintenance</h3>
+                            </div>
+                            <p class="text-theme-secondary mb-4">
+                                We deploy the integrated solution to production environments and provide ongoing 
+                                maintenance, monitoring, and optimization. Our support ensures system reliability 
+                                and adaptability to evolving requirements.
+                            </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="glass px-3 py-1 rounded-full text-xs">Production Deployment</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Monitoring Setup</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Maintenance & Updates</span>
+                                <span class="glass px-3 py-1 rounded-full text-xs">Performance Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Enhanced -->
+    <section id="projects" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Integration Projects</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    AI + Blockchain <span class="text-gradient">Projects</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Enhanced -->
+                <div class="glass-strong rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-6xl opacity-20"></i>
+                            <i class="fas fa-link text-white text-4xl opacity-20 absolute right-8 bottom-8"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs">
+                            AI + Blockchain
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 font-grotesk">AI-Powered DeFi Platform</h3>
+                        <p class="text-theme-tertiary text-sm mb-4">
+                            Intelligent decentralized finance platform using ML for risk assessment and blockchain for transparent transactions
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="glass px-3 py-1 rounded-full text-xs">AI/ML</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Ethereum</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Solidity</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">TensorFlow</span>
+                        </div>
+                        <div class="mt-4 text-sm text-theme-secondary">
+                            <div class="flex items-center justify-between">
+                                <span>Integration Complexity:</span>
+                                <span class="text-yellow-600">Advanced</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-1">
+                                <span>Blockchain:</span>
+                                <span>Ethereum Mainnet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Enhanced -->
+                <div class="glass-strong rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-cubes text-white text-6xl opacity-20"></i>
+                            <i class="fas fa-robot text-white text-4xl opacity-20 absolute left-8 top-8"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs">
+                            Supply Chain
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 font-grotesk">Smart Supply Chain</h3>
+                        <p class="text-theme-tertiary text-sm mb-4">
+                            Blockchain-tracked supply chain with AI optimization for logistics and predictive analytics
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="glass px-3 py-1 rounded-full text-xs">Hyperledger</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">AI Optimization</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">IoT Integration</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Smart Contracts</span>
+                        </div>
+                        <div class="mt-4 text-sm text-theme-secondary">
+                            <div class="flex items-center justify-between">
+                                <span>Integration Complexity:</span>
+                                <span class="text-green-600">Moderate</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-1">
+                                <span>Blockchain:</span>
+                                <span>Hyperledger Fabric</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 - Enhanced -->
+                <div class="glass-strong rounded-2xl overflow-hidden group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-cyan-500 to-blue-600 relative overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-file-contract text-white text-6xl opacity-20"></i>
+                            <i class="fas fa-brain text-white text-4xl opacity-20 absolute left-8 bottom-8"></i>
+                        </div>
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs">
+                            Smart Contracts
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 font-grotesk">Self-Learning Smart Contracts</h3>
+                        <p class="text-theme-tertiary text-sm mb-4">
+                            AI-enhanced smart contracts that adapt based on performance data and external conditions
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="glass px-3 py-1 rounded-full text-xs">Solidity</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Reinforcement Learning</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Oracles</span>
+                            <span class="glass px-3 py-1 rounded-full text-xs">Web3</span>
+                        </div>
+                        <div class="mt-4 text-sm text-theme-secondary">
+                            <div class="flex items-center justify-between">
+                                <span>Integration Complexity:</span>
+                                <span class="text-red-600">Expert</span>
+                            </div>
+                            <div class="flex items-center justify-between mt-1">
+                                <span>Blockchain:</span>
+                                <span>Ethereum + Polkadot</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Projects Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <!-- Project 4 -->
+                <div class="glass-strong rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-stethoscope text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Healthcare Data Platform</h4>
+                            <p class="text-xs text-theme-tertiary">Secure patient data sharing with AI analysis</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-theme-secondary">
+                        Blockchain-encrypted health records with AI-driven diagnostics and treatment recommendations
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="glass-strong rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-gem text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">NFT Authentication System</h4>
+                            <p class="text-xs text-theme-tertiary">AI-verified digital asset authentication</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-theme-secondary">
+                        Computer vision AI verifies physical assets, minting authenticated NFTs on blockchain
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="glass-strong rounded-2xl p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-vote-yea text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Decentralized AI Governance</h4>
+                            <p class="text-xs text-theme-tertiary">Community-governed AI models</p>
+                        </div>
+                    </div>
+                    <div class="text-sm text-theme-secondary">
+                        Blockchain-based voting for AI model updates and parameter adjustments with transparent governance
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section - Enhanced -->
+    <section id="team" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Integration Experts</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    Our <span class="text-gradient">Integration</span> Team
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-3xl mx-auto">
+                    Cross-disciplinary experts in AI, blockchain, and integration technologies
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold relative">
+                        RM
+                        <div class="absolute -top-1 -right-1 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-brain text-xs text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 font-grotesk">Ritvik Malhotra</h3>
+                    <p class="text-theme-tertiary text-sm mb-2">Chief AI Architect</p>
+                    <p class="text-xs text-theme-tertiary mb-4">PhD in Machine Learning, 5+ years in AI research</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-linkedin text-sm"></i>
+                        </a>
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-github text-sm"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4 text-xs text-theme-tertiary">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-star text-yellow-500 mr-1"></i>
+                            <span>AI-Blockchain Integration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold relative">
+                        TÕ
+                        <div class="absolute -top-1 -right-1 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-link text-xs text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 font-grotesk">Tanel Õun</h3>
+                    <p class="text-theme-tertiary text-sm mb-2">Blockchain Lead</p>
+                    <p class="text-xs text-theme-tertiary mb-4">Former Ethereum Core Contributor, 3+ years in blockchain</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-linkedin text-sm"></i>
+                        </a>
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4 text-xs text-theme-tertiary">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span>Smart Contract Security</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold relative">
+                        KN
+                        <div class="absolute -top-1 -right-1 w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-cogs text-xs text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 font-grotesk">Karthik Narayanan</h3>
+                    <p class="text-theme-tertiary text-sm mb-2">Integration Architect</p>
+                    <p class="text-xs text-theme-tertiary mb-4">Specialized in AI-blockchain system integration</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-linkedin text-sm"></i>
+                        </a>
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-github text-sm"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4 text-xs text-theme-tertiary">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span>System Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 - Enhanced -->
+                <div class="glass-strong rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-teal-600 rounded-full mx-auto mb-4 flex items-center justify-center text-3xl font-bold relative">
+                        IP
+                        <div class="absolute -top-1 -right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-xs text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1 font-grotesk">Iniya Prakash</h3>
+                    <p class="text-theme-tertiary text-sm mb-2">Security & Compliance Lead</p>
+                    <p class="text-xs text-theme-tertiary mb-4">Cybersecurity expert with blockchain specialization</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-linkedin text-sm"></i>
+                        </a>
+                        <a href="#" class="glass w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4 text-xs text-theme-tertiary">
+                        <div class="flex items-center justify-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span>Security Auditing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <span class="text-gradient">Client Success Stories</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                    What Our <span class="text-gradient">Clients</span> Say
+                </h2>
+                <p class="text-xl text-theme-tertiary max-w-3xl mx-auto">
+                    Trusted by leading companies for AI and blockchain integration solutions
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "CodelessAI transformed our supply chain with their AI-blockchain integration. The transparency and efficiency gains exceeded our expectations. Their team's expertise is unmatched."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">SM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">Sarah Mitchell</h4>
+                            <p class="text-sm text-theme-tertiary">CTO, LogiChain Solutions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "The DeFi platform they built for us uses cutting-edge AI for risk assessment. Our trading volume increased 300% with significantly reduced losses. Exceptional work!"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">MR</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">Marcus Rodriguez</h4>
+                            <p class="text-sm text-theme-tertiary">Founder, DeFi Innovations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "Their healthcare data platform revolutionized our patient data management. The AI analysis combined with blockchain security gives us confidence in our decisions."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">EP</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">Dr. Emily Parker</h4>
+                            <p class="text-sm text-theme-tertiary">Chief Medical Officer, HealthTech Pro</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 4 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "The smart contracts they developed learn and adapt to market conditions. Our automated trading system now outperforms manual strategies consistently."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">JC</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">James Chen</h4>
+                            <p class="text-sm text-theme-tertiary">Head of Trading, Quantum Finance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 5 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "Their AI oracles provide the most reliable data feeds we've ever used. The integration was seamless and the support team is incredibly responsive."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">AL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">Anna Liu</h4>
+                            <p class="text-sm text-theme-tertiary">Technical Director, Oracle Networks</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 6 -->
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="text-theme-secondary mb-6 italic">
+                        "Working with CodelessAI was a game-changer. Their consulting helped us design the perfect AI-blockchain architecture for our enterprise needs."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">DK</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-theme-primary">David Kumar</h4>
+                            <p class="text-sm text-theme-tertiary">VP Engineering, Enterprise Solutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="mt-20">
+                <div class="glass-strong rounded-2xl p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                        <div>
+                            <div class="text-4xl font-bold text-gradient mb-2">98%</div>
+                            <div class="text-theme-tertiary">Client Satisfaction</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-gradient mb-2">150+</div>
+                            <div class="text-theme-tertiary">Successful Integrations</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-gradient mb-2">24/7</div>
+                            <div class="text-theme-tertiary">Support Available</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-gradient mb-2">99.9%</div>
+                            <div class="text-theme-tertiary">System Reliability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Enhanced -->
+    <section id="contact" class="py-24 px-6">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        <span class="text-gradient">Start Your Integration</span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-bold font-grotesk mb-6">
+                        Let's Build <span class="text-gradient">Together</span>
+                    </h2>
+                    <p class="text-xl text-theme-tertiary">
+                        Ready to integrate AI with blockchain in your project? Contact our experts.
+                    </p>
+                </div>
+
+                <div class="glass-strong rounded-2xl p-8 md:p-12">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Name</label>
+                                <input type="text" class="w-full glass-strong rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email</label>
+                                <input type="email" class="w-full glass-strong rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="your@email.com">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Company</label>
+                            <input type="text" class="w-full glass-strong rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Your company">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Integration Type</label>
+                            <select class="w-full glass-strong rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option>AI with Blockchain Integration</option>
+                                <option>Enterprise Blockchain Solutions</option>
+                                <option>AI System Development</option>
+                                <option>DeFi & FinTech Solutions</option>
+                                <option>AI Oracles & Data Feeds</option>
+                                <option>Consulting & Strategy</option>
+                                <option>Other Integration Project</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Project Description</label>
+                            <textarea rows="5" class="w-full glass-strong rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Describe your AI + blockchain integration project..."></textarea>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input type="checkbox" id="nda" class="mr-2">
+                            <label for="nda" class="text-sm text-theme-tertiary">I need an NDA before sharing detailed project information</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition glow-purple text-white">
+                            Request Integration Consultation
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                    <div class="glass-strong rounded-xl p-6 text-center">
+                        <i class="fas fa-envelope text-3xl text-purple-400 mb-3"></i>
+                        <h4 class="font-semibold mb-2">Integration Support</h4>
+                        <p class="text-theme-secondary text-sm">hello@codelessai.in</p>
+                        <p class="text-xs text-theme-tertiary mt-1">Response within 24 hours</p>
+                    </div>
+                    <div class="glass-strong rounded-xl p-6 text-center">
+                        <i class="fas fa-phone text-3xl text-blue-400 mb-3"></i>
+                        <h4 class="font-semibold mb-2">Consultation</h4>
+                        <p class="text-theme-secondary text-sm">+91 8157953586</p>
+                        <p class="text-theme-secondary text-sm">+91 7034607887</p>
+                        <p class="text-xs text-theme-tertiary mt-1">Mon-Fri, 9AM-6PM PST</p>
+                    </div>
+                    <div class="glass-strong rounded-xl p-6 text-center">
+                        <i class="fas fa-map-marker-alt text-3xl text-pink-400 mb-3"></i>
+                        <h4 class="font-semibold mb-2">Headquarters</h4>
+                        <p class="text-theme-secondary text-sm">Thrissur, IN</p>
+                        <p class="text-xs text-theme-tertiary mt-1">Remote teams worldwide</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-theme">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="mb-4">
+                        <span class="text-2xl font-bold font-grotesk">Codeless<span class="text-gradient">AI</span></span>
+                    </div>
+                    <p class="text-theme-tertiary mb-4">
+                        Leading the convergence of Artificial Intelligence and Blockchain technology. 
+                        We build integrated systems that are intelligent, transparent, and transformative.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold mb-4">Integration Services</h4>
+                    <ul class="space-y-2 text-theme-tertiary">
+                        <li><a href="#ai-blockchain" class="hover:text-theme-primary transition">AI + Blockchain</a></li>
+                        <li><a href="#services" class="hover:text-theme-primary transition">All Services</a></li>
+                        <li><a href="#technologies" class="hover:text-theme-primary transition">Tech Stack</a></li>
+                        <li><a href="#process" class="hover:text-theme-primary transition">Integration Process</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-theme-tertiary">
+                        <li><a href="#" class="hover:text-theme-primary transition">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-theme-primary transition">Integration Whitepapers</a></li>
+                        <li><a href="#" class="hover:text-theme-primary transition">Developer Documentation</a></li>
+                        <li><a href="#" class="hover:text-theme-primary transition">Privacy & Security</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-theme pt-8 text-center text-theme-tertiary text-sm">
+                <p>&copy; 2025 CodelessAI. All rights reserved. Pioneering AI + Blockchain integration.</p>
+                <p class="mt-2 text-xs">Smart contracts audited by leading security firms | AI models ethically trained and validated</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+        
+        function updateThemeIcon(theme) {
+            const icon = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+            if (themeToggle) themeToggle.querySelector('i').className = `fas ${icon} text-lg`;
+            if (themeToggleMobile) themeToggleMobile.querySelector('i').className = `fas ${icon} text-lg`;
+        }
+        
+        function toggleTheme() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Technology scrolling enhancement for wide screens
+        function adjustScrollSpeed() {
+            const scrollTracks = document.querySelectorAll('.scroll-track');
+            const screenWidth = window.innerWidth;
+            
+            scrollTracks.forEach(track => {
+                if (screenWidth > 1200) {
+                    // Ultra-wide screens - faster scrolling
+                    track.style.animationDuration = '40s';
+                } else if (screenWidth > 768) {
+                    // Laptop/desktop screens - medium speed
+                    track.style.animationDuration = '50s';
+                } else {
+                    // Mobile screens - slower
+                    track.style.animationDuration = '25s';
+                }
+            });
+        }
+        
+        // Adjust on load and resize
+        window.addEventListener('load', adjustScrollSpeed);
+        window.addEventListener('resize', adjustScrollSpeed);
+    </script>
+
+</body>
+</html>
