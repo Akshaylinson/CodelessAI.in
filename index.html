@@ -424,15 +424,25 @@
                     <a href="#contact" class="text-gray-700 hover:text-gray-900 transition">Contact</a>
                 </div>
 
-                <!-- CTA Button -->
-                <a href="#contact" class="hidden md:block bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition text-white">
-                    Get Started
-                </a>
+                <!-- Theme Toggle & CTA -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button id="theme-toggle" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition text-gray-700">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition text-white">
+                        Get Started
+                    </a>
+                </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-900">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <div class="md:hidden flex items-center space-x-3">
+                    <button id="theme-toggle-mobile" class="glass w-10 h-10 rounded-full flex items-center justify-center hover:bg-white/20 transition text-gray-700">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-900">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -2035,6 +2045,41 @@
     </footer>
 
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+        
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        htmlElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+        
+        function updateThemeIcon(theme) {
+            const icon = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+            if (themeToggle) themeToggle.querySelector('i').className = `fas ${icon} text-lg`;
+            if (themeToggleMobile) themeToggleMobile.querySelector('i').className = `fas ${icon} text-lg`;
+        }
+        
+        function toggleTheme() {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+            
+            // Redirect to appropriate page
+            if (newTheme === 'dark') {
+                window.location.href = 'dark.html';
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+        if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+        
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
