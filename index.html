@@ -2337,7 +2337,7 @@
             </div>
 
             <div class="border-t border-theme pt-8 text-center text-theme-tertiary text-sm">
-                <p>&copy; 2025 CodelessAI. All rights reserved. Pioneering AI + Blockchain integration.</p>
+                <p>&copy; <span class="current-year"></span> CodelessAI. All rights reserved. Pioneering AI + Blockchain integration.</p>
                 <p class="mt-2 text-xs">Smart contracts audited by leading security firms | AI models ethically trained and validated</p>
             </div>
         </div>
@@ -2355,6 +2355,9 @@
     </a>
 
     <script>
+        //footer year update function
+         document.querySelectorAll('.current-year')
+    .forEach(el => el.textContent = new Date().getFullYear());
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const themeToggleMobile = document.getElementById('theme-toggle-mobile');
