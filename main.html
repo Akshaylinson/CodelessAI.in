@@ -1143,7 +1143,7 @@
             </div>
 
             <div class="border-t border-theme pt-8 text-center text-theme-tertiary text-sm">
-                <p>&copy; 2025 Codeless Technologies. All rights reserved. Building the future of intelligent systems.</p>
+                <p>&copy; <span class="current-year"></span> Codeless Technologies. All rights reserved. Building the future of intelligent systems.</p>
                 <p class="mt-2 text-xs">Innovation • Quality • Excellence</p>
             </div>
         </div>
@@ -1161,6 +1161,9 @@
     </a>
 
     <script>
+            //year updation funtion
+          document.querySelectorAll('.current-year').forEach(el => el.textContent = new Date().getFullYear());
+
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const themeToggleMobile = document.getElementById('theme-toggle-mobile');
